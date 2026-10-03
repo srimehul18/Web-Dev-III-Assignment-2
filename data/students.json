@@ -1,0 +1,27 @@
+[
+   {
+      "id": 2501730063,
+      "name": "Sagar",
+      "course": "BTech CSE"
+   },
+   {
+      "id": 2501730067,
+      "name": "Chirag",
+      "course": "BTech ECE"
+   },
+   {
+      "id": 2501730068,
+      "name": "Chakshu",
+      "course": "BTech Mechanical"
+   },
+   {
+      "id": 2501730116,
+      "name": "Akshit",
+      "course": "BTech Chemical"
+   },
+   {
+      "name": "Pravindra",
+      "course": "BTech Physics",
+      "id": 2501730132
+   }
+]

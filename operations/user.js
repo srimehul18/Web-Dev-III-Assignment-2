@@ -65,5 +65,27 @@ const updateStudent = (req, res) => {
         data: data
     })
 }
+const deleteStudent = (req, res) => {
+    let id = req.params.id
+    let data = getData()
+    let index = data.findIndex(e => e.id == id)
 
-export { getStudents, createStudent, updateStudent }
+    if (index === -1) {
+        return res.status(404).json({
+            message: "Student not found",
+            success: false
+        })
+    }
+
+    data.splice(index, 1)
+
+    fs.writeFileSync('./data/students.json', JSON.stringify(data, null, 3))
+
+    res.status(200).json({
+        message: "Student deleted successfully",
+        success: true,
+        data: data
+    })
+}
+
+export { getStudents, createStudent, updateStudent, deleteStudent }
