@@ -79,7 +79,7 @@ const deleteStudent = (req, res) => {
 
     data.splice(index, 1)
 
-    fs.writeFileSync('./data/students.json', JSON.stringify(data, null, 3))
+    fs.writeFileSync('./data/data.json', JSON.stringify(data, null, 3))
 
     res.status(200).json({
         message: "Student deleted successfully",
