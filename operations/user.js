@@ -1,7 +1,7 @@
 import fs from 'fs'
 
 function getData() {
-    let data = fs.readFileSync('./data/data.json', 'utf-8')
+    let data = fs.readFileSync('./data/students.json', 'utf-8')
     data = JSON.parse(data)
     return data
 }
@@ -14,6 +14,34 @@ const getStudents = (req, res) => {
             message: "Students received successfully",
             success: true,
             data: data
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal server error",
+            success: false
+        })
+    }
+}
+
+const getStudentById = (req, res) => {
+    try {
+        const id = req.params.id
+
+        let data = getData()
+
+        let student = data.find(e => e.id == id)
+
+        if (!student) {
+            return res.status(404).json({
+                message: "Student not found",
+                success: false
+            })
+        }
+
+        res.status(200).json({
+            message: "Student found successfully",
+            success: true,
+            data: student
         })
     } catch (error) {
         res.status(500).json({
@@ -122,4 +150,4 @@ const deleteStudent = (req, res) => {
     }
 }
 
-export {getStudents, createStudent, updateStudent, deleteStudent}
+export {getStudents, getStudentById, createStudent, updateStudent, deleteStudent}
