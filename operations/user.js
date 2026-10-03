@@ -30,7 +30,7 @@ const createStudent = (req, res) => {
 
     data.push({name, course, id})
 
-    fs.writeFileSync( './data/students.json', JSON.stringify(data, null, 3))
+    fs.writeFileSync( './data/data.json', JSON.stringify(data, null, 3))
 
     res.status(201).json({
         message: "Student added successfully",
@@ -38,5 +38,32 @@ const createStudent = (req, res) => {
         data: data
     })
 }
+const updateStudent = (req, res) => {
+    let { name, course } = req.body
+    let id = req.params.id
+    let data = getData()
+    let student = data.find(e => e.id == id)
 
-export { getStudents, createStudent }
+    if (!student) {
+        return res.status(404).json({
+            message: "Student not found",
+            success: false
+        })
+    }
+    if (name) {
+        student.name = name
+    }
+    if (course) {
+        student.course = course
+    }
+
+    fs.writeFileSync('./data/data.json', JSON.stringify(data, null, 3))
+
+    res.status(200).json({
+        message: "Student updated successfully",
+        success: true,
+        data: data
+    })
+}
+
+export { getStudents, createStudent, updateStudent }
